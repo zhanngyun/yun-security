@@ -1,6 +1,7 @@
 package yun.demo.controller;
 
 import com.fasterxml.jackson.annotation.JsonView;
+import io.swagger.models.auth.In;
 import org.apache.commons.lang.builder.ReflectionToStringBuilder;
 import org.apache.commons.lang.builder.ToStringStyle;
 import org.springframework.data.domain.Pageable;
@@ -11,6 +12,7 @@ import org.springframework.validation.FieldError;
 import org.springframework.web.bind.annotation.*;
 import yun.demo.dto.User;
 import yun.demo.dto.UserQueryCondition;
+import yun.demo.exception.YunRunTimeException;
 
 import javax.validation.Valid;
 import java.util.ArrayList;
@@ -82,5 +84,15 @@ public class UserController {
         user.setId(1);
         user.setDate(queryCondition.getDate());
         return user;
+    }
+
+    @DeleteMapping("/{id:\\d+}")
+    public void delete(@PathVariable("id") Integer id){
+        System.out.println(id);
+    }
+
+    @GetMapping("/exception/{id:\\d+}")
+    public String exception(@PathVariable("id") Integer id){
+        throw new YunRunTimeException(id);
     }
 }

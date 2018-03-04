@@ -2,6 +2,7 @@ package yun.demo.dto;
 
 import org.hibernate.validator.constraints.NotBlank;
 import org.hibernate.validator.constraints.NotEmpty;
+import yun.demo.constraint.MyConstraint;
 
 import javax.validation.constraints.Past;
 import java.util.Date;
@@ -13,6 +14,7 @@ import java.util.Date;
  */
 public class UserQueryCondition {
 
+    @MyConstraint(message = "这是一个测试的")
     private String username;
 
     @NotBlank(message = "密码不能为空")
