@@ -9,13 +9,13 @@
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <artifactId>yun.security.browser</artifactId>
+    <artifactId>yun-security-browser</artifactId>
 
 
     <dependencies>
         <dependency>
             <groupId>com.yun.security</groupId>
-            <artifactId>yun.security.core</artifactId>
+            <artifactId>yun-security-core</artifactId>
             <version>${yun.security.version}</version>
         </dependency>
         <dependency>

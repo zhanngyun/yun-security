@@ -9,7 +9,7 @@
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <artifactId>yun.security.core</artifactId>
+    <artifactId>yun-security-core</artifactId>
 
 
     <dependencies>
