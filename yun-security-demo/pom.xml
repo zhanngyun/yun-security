@@ -11,14 +11,6 @@
 
     <artifactId>yun-security-demo</artifactId>
 
-    <!--单独配置阿里云镜像中没有的-->
-    <repositories>
-        <repository>
-            <id>mvnrepository</id>
-            <url>https://mvnrepository.com/artifact/com.github.tomakehurst/wiremock</url>
-        </repository>
-    </repositories>
-
     <dependencies>
         <dependency>
             <groupId>com.yun.security</groupId>
