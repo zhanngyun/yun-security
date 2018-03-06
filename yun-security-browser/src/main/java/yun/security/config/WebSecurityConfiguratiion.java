@@ -1,8 +1,13 @@
 package yun.security.config;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
+import yun.security.properties.SecurityProperties;
 
 /**
  * @Author: yzhang
@@ -11,14 +16,28 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 @Configuration
 public class WebSecurityConfiguratiion extends WebSecurityConfigurerAdapter{
 
+    @Autowired
+    private SecurityProperties securityProperties;
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
 
         http.formLogin()
+//                .loginPage("/signIn.html")  //登录页面
+                .loginPage("/authentication/require")  //跳转到controller路径
+                .loginProcessingUrl("/authentication/form") //登录请求地址
                 .and()
                 .authorizeRequests()
+                .antMatchers("/authentication/require",
+                        securityProperties.getBrowser().getLoginPage()).permitAll()//禁止该页面校验
                 .anyRequest()
-                .authenticated();
+                .authenticated()
+                .and()
+                .csrf().disable();
+    }
+    @Bean
+    public PasswordEncoder passwordEncoder(){
+        //密码验证
+        return new BCryptPasswordEncoder();
     }
 }

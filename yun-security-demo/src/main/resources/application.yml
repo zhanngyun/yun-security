@@ -13,3 +13,8 @@ server:
 #security:
 #  basic:
 #    enabled: false
+
+yun:
+  security:
+    browser:
+      loginPage: /demo-login.html
