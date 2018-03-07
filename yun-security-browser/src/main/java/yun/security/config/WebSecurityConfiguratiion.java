@@ -40,7 +40,7 @@ public class WebSecurityConfiguratiion extends WebSecurityConfigurerAdapter{
                 .and()
                 .authorizeRequests()
                 .antMatchers("/authentication/require",
-                        securityProperties.getBrowser().getLoginPage()).permitAll()//禁止该页面校验
+                        securityProperties.getBrowser().getLoginPage(),"/me").permitAll()//禁止该页面校验
                 .anyRequest()
                 .authenticated()
                 .and()
