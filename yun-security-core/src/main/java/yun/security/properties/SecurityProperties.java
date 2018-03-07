@@ -10,7 +10,9 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
 @ConfigurationProperties(prefix = "yun.security")
 public class SecurityProperties {
 
-    BrowserProperties browser = new BrowserProperties();
+    private BrowserProperties browser = new BrowserProperties();
+
+    private ValidateCodeImageProperties code = new ValidateCodeImageProperties();
 
     public BrowserProperties getBrowser() {
         return browser;
@@ -18,5 +20,13 @@ public class SecurityProperties {
 
     public void setBrowser(BrowserProperties browser) {
         this.browser = browser;
+    }
+
+    public ValidateCodeImageProperties getCode() {
+        return code;
+    }
+
+    public void setCode(ValidateCodeImageProperties code) {
+        this.code = code;
     }
 }

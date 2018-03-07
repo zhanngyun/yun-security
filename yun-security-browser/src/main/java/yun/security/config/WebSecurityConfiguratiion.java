@@ -9,6 +9,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.authentication.AuthenticationFailureHandler;
 import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
+import yun.security.properties.SecurityConstants;
 import yun.security.properties.SecurityProperties;
 
 /**
@@ -39,8 +40,9 @@ public class WebSecurityConfiguratiion extends WebSecurityConfigurerAdapter{
                 .failureHandler(yunAuthenticationFailureHandler)
                 .and()
                 .authorizeRequests()
-                .antMatchers("/authentication/require",
-                        securityProperties.getBrowser().getLoginPage(),"/me").permitAll()//禁止该页面校验
+                .antMatchers(SecurityConstants.DEFAULT_UNAUTHENTICATION_URL,
+                        securityProperties.getBrowser().getLoginPage(),
+                        SecurityConstants.DEFAULT_VALIDATE_CODE_URL_PREFIX+"/*").permitAll()//禁止该页面校验
                 .anyRequest()
                 .authenticated()
                 .and()
