@@ -7,6 +7,8 @@ import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.security.web.authentication.AuthenticationFailureHandler;
+import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
 import yun.security.properties.SecurityProperties;
 
 /**
@@ -19,6 +21,13 @@ public class WebSecurityConfiguratiion extends WebSecurityConfigurerAdapter{
     @Autowired
     private SecurityProperties securityProperties;
 
+
+    @Autowired
+    private AuthenticationSuccessHandler  yunAuthenticationSuccessHandler;
+
+    @Autowired
+    private AuthenticationFailureHandler yunAuthenticationFailureHandler;
+
     @Override
     protected void configure(HttpSecurity http) throws Exception {
 
@@ -26,6 +35,8 @@ public class WebSecurityConfiguratiion extends WebSecurityConfigurerAdapter{
 //                .loginPage("/signIn.html")  //登录页面
                 .loginPage("/authentication/require")  //跳转到controller路径
                 .loginProcessingUrl("/authentication/form") //登录请求地址
+                .successHandler(yunAuthenticationSuccessHandler)  //登录成功处理的handler
+                .failureHandler(yunAuthenticationFailureHandler)
                 .and()
                 .authorizeRequests()
                 .antMatchers("/authentication/require",

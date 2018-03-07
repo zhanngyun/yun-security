@@ -10,11 +10,15 @@ spring:
     store-type: none
 server:
   port: 8000
+yun:
+  security:
+    browser:
+      loginType: JSON
 #security:
 #  basic:
 #    enabled: false
 
-yun:
-  security:
-    browser:
-      loginPage: /demo-login.html
+#yun:
+#  security:
+#    browser:
+#      loginPage: /demo-login.html
