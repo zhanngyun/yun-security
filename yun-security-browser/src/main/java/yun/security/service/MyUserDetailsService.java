@@ -15,7 +15,7 @@ import org.springframework.stereotype.Component;
  * @Author: yzhang
  * @Date: 2018/3/6 14:22
  */
-@Component
+@Component("userDetailsService")
 public class MyUserDetailsService implements UserDetailsService {
 
     @Autowired

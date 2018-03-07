@@ -1,5 +1,6 @@
 package yun.security.validate.code;
 
+import org.springframework.stereotype.Component;
 import org.springframework.web.context.request.ServletWebRequest;
 import yun.security.validate.AbstractValidateCodeProcessor;
 
@@ -9,6 +10,7 @@ import javax.imageio.ImageIO;
  * @Author: yzhang
  * @Date: 2018/3/7 15:23
  */
+@Component("imageValidateCodeProcessor")
 public class ImageCodeProcessor extends AbstractValidateCodeProcessor<ImageCode> {
 
 
